@@ -94,5 +94,16 @@ class transaksi_model extends CI_Model
         $query = $this->db->order_by('id_transaksi', 'DESC')->get('transaksi');
         return $query->result();
     }
+
+    public function gettransaksibyidUser($id_user)
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi as t');
+        $this->db->join('user u', 'u.id_user = t.id_user');
+        $this->db->join('fotografi d', 'd.id_fotografi = t.id_fotografi');
+        $this->db->where(['t.id_user'=>$id_user]);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 /* End of file ModelName.php */

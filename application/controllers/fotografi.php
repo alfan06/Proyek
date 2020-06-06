@@ -13,6 +13,7 @@ class fotografi extends CI_Controller {
          $this->load->library('form_validation');
          $this->load->model('fotografi_model');
          $this->load->model('Transaksi_model');
+         $this->load->model('komen_model');
          $this->load->model('user_model');
          $this->load->model('cetak_model');
     }
@@ -43,6 +44,7 @@ class fotografi extends CI_Controller {
             $data['title'] = 'Detail fotografi';
             $data['fotografi'] = $this->fotografi_model->datatabels();
             $data['fotografi']=$this->fotografi_model->getfotografiByID($id_fotografi);
+            $data['komen']=$this->komen_model->getkomenbyid($id_fotografi);
             $status_login = $this->session->userdata('level');
         if ($status_login == 'admin') {
             $this->load->view('admin/template/header', $data);
@@ -71,7 +73,7 @@ class fotografi extends CI_Controller {
         if ($this->form_validation->run() == FALSE){
             # code...
             $this->load->view('admin/template/header', $data);
-            // $this->load->view('admin/template/sidebar', $data);
+            $this->load->view('admin/template/sidebar', $data);
             $this->load->view('fotografi/tambah', $data);
             $this->load->view('admin/template/footerAdmin', $data);
         } else{
@@ -99,6 +101,7 @@ class fotografi extends CI_Controller {
         if ($this->form_validation->run() == FALSE){
             # code...
             $this->load->view('admin/template/header', $data);
+            $this->load->view('admin/template/sidebar', $data);
             $this->load->view('fotografi/edit', $data);
             $this->load->view('admin/template/footerAdmin', $data);
         } else{
@@ -119,27 +122,6 @@ class fotografi extends CI_Controller {
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "datafotografi.pdf";
         $this->pdf->load_view('fotografi/laporan', $data);
-    }
-
-    public function tambah_transak(){
-        $data['title'] = 'Form Add Transaction Data';
-        $this->load->library('form_validation');
-        $data['user'] = $this->user_model->getAllUser();
-        $data['fotografi'] = $this->fotografi_model->getAllfotografi();
-        $this->form_validation->set_rules('alamatfotografi', 'alamatfotografi', 'required');
-
-
-        if ($this->form_validation->run() == FALSE) {
-            #code...
-            $this->load->view('user/template/header1', $data);
-            $this->load->view('fotografi/index_user');
-            $this->load->view('user/template/footer1', $data);
-        } else {
-            # code...
-            $this->Transaksi_model->tambahdatatransaksi();
-            $this->session->set_flashdata('flash-data', 'ditambahkan');
-            redirect('fotografi', 'refresh');
-        }
     }
 
 }

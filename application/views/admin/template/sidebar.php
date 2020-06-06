@@ -25,7 +25,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="<?= base_url(); ?>admin" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -64,12 +64,6 @@
                 <a href="<?= base_url(); ?>fotografi" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>fotografi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Video</p>
                 </a>
               </li>
             </ul>

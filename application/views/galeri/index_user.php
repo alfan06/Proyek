@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
+</head>
 
 <section class="new-product-area section-padding30">
             <div class="container"> 

@@ -4,53 +4,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class komen extends CI_Controller
 {
-
-    var $API = '';
-
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('curl');
-        $this->load->model('forum_model');
-
-        if ($this->session->userdata('level') != "user") {
-            redirect('login', 'refresh');
-        }
+        $this->load->model('komen_model');
+        $this->load->model('user_model');
+        $this->load->model('fotografi_model');
+        $this->load->model('cetak_model');
+        $this->load->helper('form');
+        $this->load->helper('url');
+        $this->load->library('form_validation');
     }
 
+    public function kirimKomen() {
+        $data['title'] = 'Form Add Transaction Data';
+        $this->load->library('form_validation');
+        $data['user'] = $this->input->get('id_user', true);
+        $data['fotografi'] = $this->input->get('id_penyewa', true);
+        $this->form_validation->set_rules('isi', 'isi');
 
-    public function index()
+        $this->komen_model->tambahkomen();
+        $this->session->set_flashdata('flash-data', 'Added');
+        redirect('fotografi', 'refresh');
+	}
+
+	public function hapus($id_komen)
     {
-        $data['topic'] = $this->forum_model->getAllTopic();
-        $data['title'] = 'Ayo Berdiskusi !';
-        // if ($this->input->post('keyword')) {
-        //     # code...
-        //     $data['topic'] = $this->forum_model->cariTopic();
-        // }
-        $this->load->view('templates/header', $data);
-        $this->load->view('forum/index', $data);
-        $this->load->view('templates/footer');
-    }
-    public function addTopic()
-    {
-        $this->form_validation->set_rules('oleh', 'oleh', 'required');
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email');
-        $this->form_validation->set_rules('password', 'password', 'required|min_length[8]');
-        $this->form_validation->set_rules('asal_kota', 'asal_kota', 'required');
-    }
-    public function detailForum($id)
-    {
-        $data['topic'] = $this->forum_model->getTopicByID($id);
-        $data['comment'] = $this->forum_model->getCommentByID($id);
-        $this->load->view('templates/header', $data);
-        $this->load->view('forum/detail', $data);
-        $this->load->view('templates/footer');
-    }
-    public function addComment($id)
-    {
-        $this->forum_model->addComment();
-        $this->session->set_flashdata('flash-data', 'ditambahkan');
-        redirect('forum/detailForum/' . $id, 'refresh');
+        $this->komen_model->hapusdatakomen($id_komen);
+        $this->session->set_flashdata('flash-data', 'dihapus');
+        redirect('komen', 'refresh');
     }
 }
 

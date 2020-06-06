@@ -33,7 +33,9 @@ class galeri extends CI_Controller {
             $this->load->view('galeri/index_user');
             $this->load->view('user/template/footer1', $data);
         } else {
-            redirect('auth', 'refresh');
+            $this->load->view('auth/template/header2', $data);
+            $this->load->view('galeri/index_user');
+            $this->load->view('auth/template/footer', $data);
         }
     }
 
@@ -76,6 +78,7 @@ class galeri extends CI_Controller {
         if ($this->form_validation->run() == FALSE){
             # code...
             $this->load->view('admin/template/header', $data);
+            $this->load->view('admin/template/sidebar', $data);
             $this->load->view('galeri/edit', $data);
             $this->load->view('admin/template/footerAdmin', $data);
         } else{

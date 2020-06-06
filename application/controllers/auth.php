@@ -44,7 +44,7 @@ class auth extends CI_Controller
     public function prosesLogin()
     {
         if ($this->session->userdata('level') == "user") {
-            redirect('user', 'refresh','refresh');
+            redirect('user', 'refresh');
         } elseif ($this->session->userdata('level') == "admin") {
             redirect('admin', 'refresh');
         }

@@ -6,6 +6,7 @@ class Star_rating extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('fotografi_model');
         $this->load->model('star_rating_model');
     }
 

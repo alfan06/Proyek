@@ -32,7 +32,7 @@ class transaksi extends CI_Controller
         $this->load->view('admin/template/header', $data);
         $this->load->view('admin/template/sidebar', $data);
         $this->load->view('transaksi/index', $data);
-        $this->load->view('admin/template/footer');
+        $this->load->view('admin/template/footerAdmin');
     }
 
     public function index_user()
@@ -142,7 +142,7 @@ class transaksi extends CI_Controller
         $status_login = $this->session->userdata('level');
         if ($status_login == 'user') {
             redirect('transaksi', 'refresh');
-        } elseif ($status_login == 'admin' || $status_login == 'user') {
+        } elseif ($status_login == 'admin') {
             $data['title'] = 'Form Add Transaction Data';
             $this->load->library('form_validation');
             $data['user'] = $this->user_model->getAllUser();
@@ -152,9 +152,10 @@ class transaksi extends CI_Controller
 
             if ($this->form_validation->run() == FALSE) {
                 #code...
-                $this->load->view('template/header', $data);
+                $this->load->view('admin/template/header', $data);
+                $this->load->view('admin/template/sidebar', $data);
                 $this->load->view('transaksi/tambah', $data);
-                $this->load->view('template/footer');
+                $this->load->view('admin/template/footerAdmin');
             } else {
                 $this->Transaksi_model->tambahdatatransaksi();
                 $this->session->set_flashdata('flash-data', 'Added');
@@ -163,6 +164,21 @@ class transaksi extends CI_Controller
         } else {
             redirect('auth', 'refresh');
         }
+    }
+
+    //coba
+    public function tambah_user()
+    {
+            $data['title'] = 'Form Add Transaction Data';
+            $this->load->library('form_validation');
+            $data['user'] = $this->input->get('id_user', true);
+            $data['fotografi'] = $this->input->get('id_penyewa', true);
+            $this->form_validation->set_rules('alamatfotografi', 'alamatfotografi', 'required');
+
+            $this->Transaksi_model->tambahdatatransaksi();
+            $this->session->set_flashdata('flash-data', 'Added');
+            redirect('fotografi', 'refresh');
+            
     }
 
     public function hapus($id)
@@ -185,8 +201,9 @@ class transaksi extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             # code...
             $this->load->view('admin/template/header', $data);
+            $this->load->view('admin/template/sidebar', $data);
             $this->load->view('transaksi/edit', $data);
-            $this->load->view('template/footer');
+            $this->load->view('admin/template/footerAdmin');
         } else {
             # code...
             $this->Transaksi_model->ubahdatatransaksi();
@@ -206,6 +223,18 @@ class transaksi extends CI_Controller
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "datatransaksi.pdf";
         $this->pdf->load_view('transaksi/laporan', $data);
+    }
+
+    public function user_transaki()
+    {
+        $data['title'] = 'List Transaksi';
+        $data['transaksi'] = $this->Transaksi_model->datatabels();
+        $id_user = $this->session->userdata('id_user');
+        $data['transaksi'] = $this->Transaksi_model->gettransaksibyidUser($id_user);
+        $this->load->view('user/template/header2', $data);
+        $this->load->view('user/template/header1', $data);
+        $this->load->view('transaksi/index_userID', $data);
+        $this->load->view('user/template/footer1', $data);
     }
 }
 

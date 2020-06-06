@@ -13,6 +13,7 @@
   <!-- Bootstrap core CSS -->
   <link href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 
+
   <!-- Custom fonts for this template -->
   <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet')">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -36,32 +37,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <!-- Try -->
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>galeri">galeri</a>
-          </li>
-          <!-- Try -->
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>auth/login">Login</a>
+          <li class="nav-item submenu dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WELCOME, <?= $this->session->userdata('user') ?></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item">
+                  <a class="nav-link(dropdown)" href="<?= base_url(); ?>auth/logout">Logout</a>
+                </li>
+              </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-   <!-- Header -->
-   <header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">FLICKER MOTION</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">"Capture Your Memories"</h2>
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
-      </div>
-    </div>
-  </header>
