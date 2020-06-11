@@ -212,7 +212,7 @@ class transaksi extends CI_Controller
         }
     }
 
-    public function laporan_pdfTransaksi()
+    public function laporan_pdf()
     {
 
         $this->load->library('pdf');

@@ -11,8 +11,8 @@ class auth extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('level') == "user") {
-            redirect('user', 'refresh');
+        if ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Aktif") {
+            redirect('user/index', 'refresh');
         } elseif ($this->session->userdata('level') == "admin") {
             redirect('admin', 'refresh');
         }
@@ -25,8 +25,9 @@ class auth extends CI_Controller
     public function login()
     {
         $data['title'] = 'User Login';
-        // $this->load->view('auth/template/header', $data);
-        $this->load->view('auth/login');
+        $this->load->view('auth/template/headerlogin', $data);
+        $this->load->view('auth/login', $data);
+        $this->load->view('auth/template/footerlogin', $data);
     }
 
     public function register()
@@ -37,17 +38,18 @@ class auth extends CI_Controller
             redirect('admin', 'refresh');
         }
         $data['title'] = 'User Register';
-        // $this->load->view('auth/template/header', $data);
+        $this->load->view('auth/template/headerlogin', $data);
         $this->load->view('auth/register');
+        $this->load->view('auth/template/footerlogin', $data);
     }
 
     public function prosesLogin()
     {
-        if ($this->session->userdata('level') == "user") {
-            redirect('user', 'refresh');
+        if ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Aktif") {
+            redirect('user','refersh');
         } elseif ($this->session->userdata('level') == "admin") {
             redirect('admin', 'refresh');
-        }
+        } 
         $username = htmlspecialchars($this->input->post('username'));
         $password = htmlspecialchars(MD5($this->input->post('password')));
 
@@ -61,20 +63,22 @@ class auth extends CI_Controller
             $this->session->set_userdata('status', $row->status);
             if ($this->session->userdata('level') == "admin") {
                 redirect('admin');
-            } elseif ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Not Active") {
+            }elseif ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Aktif"){
+                redirect('user');
+            }elseif ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Tidak Aktif"){
                 $this->session->sess_destroy();
                 $data['pesan'] = "Sorry You Are Not Active, Please Contact Admin!!";
                 $data['title'] = 'Login User';
-                $this->load->view('auth/template/header', $data);
+                $this->load->view('auth/template/headerlogin', $data);
                 $this->load->view('auth/login', $data);
-            } elseif ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Active") {
-                redirect('user/index');
+                $this->load->view('auth/template/footerlogin', $data);
             }
-        } else {
+        }else {
             $data['pesan'] = "Sorry, username and password are incorrect!";
             $data['title'] = 'Login';
-            // $this->load->view('auth/template/header', $data);
+            $this->load->view('auth/template/headerlogin', $data);
             $this->load->view('auth/login');
+            $this->load->view('auth/template/footerlogin', $data);
         }
     }
 

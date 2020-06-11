@@ -33,10 +33,32 @@
                             <label for="harga">harga fotografi</label>
                             <input type="text" class="form-control" id="harga" name="harga" value="<?= $fotografi['harga']; ?>">
                         </div>
-                        <div class="form-group">
-                            <label for="foto">fotografi</label>
-                            <input type="text" class="form-control" id="foto" name="foto" value="<?= $fotografi['foto']; ?>">
+                        <!-- <div class="form-group">
+                            <p for="foto">foto</p>
+                            <div style="margin-bottom:0.1px">
+                                <img class="zoom" style="margin-top:30px;margin-bottom:30px;border: 1px solid black;" src="<?= base_url() ?>/uploads/foto/<?= $fotografi['foto'] ?>" width="100">
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <p for="image">foto</label>
+                            <input type="hidden" name="fotoLama" value="<?= $fotografi['foto']; ?>">
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div> -->
+                        <div class="form-group">
+                            <p for="gambar">Foto : </p>
+                            <?php if ($fotografi['foto'] == null) : ?>
+                                <small>(Foto tidak ada)</small>
+                            <?php else : ?>
+                                <img src="<?= base_url() ?>/uploads/foto/<?= $fotografi['foto'] ?>" alt="" width="75px">
+                            <?php endif ?>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" name="fotoLama" value="<?= $fotografi['foto']; ?>">
+                            <label for="image">Ubah Foto:</label>
+                            <input type="file" name="image" class="form-control-file">
+                        </div>
+                        
                         <button type="submit" name="edit" class="btn btn-primary float-right"> Edit </button>
                     </form>
                     <a href="<?= base_url(); ?>fotografi" class="btn btn-primary">Kembali</a>

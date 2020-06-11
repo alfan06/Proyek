@@ -49,8 +49,8 @@ class fotografi extends CI_Controller {
         if ($status_login == 'admin') {
             $this->load->view('admin/template/header', $data);
             $this->load->view('admin/template/sidebar', $data);
-            $this->load->view('fotografi/detail_user', $data);
-            $this->load->view('admin/template/footer', $data);
+            $this->load->view('fotografi/detail', $data);
+            $this->load->view('admin/template/footerAdmin', $data);
         } elseif ($status_login == 'user') {
             $this->load->view('user/template/header2', $data);
             $this->load->view('user/template/header1', $data);
@@ -97,7 +97,7 @@ class fotografi extends CI_Controller {
         
         $this->form_validation->set_rules('nama', 'nama', 'required');
         $this->form_validation->set_rules('harga', 'harga', 'required');
-        
+
         if ($this->form_validation->run() == FALSE){
             # code...
             $this->load->view('admin/template/header', $data);
@@ -108,7 +108,7 @@ class fotografi extends CI_Controller {
             # code...
             $this->fotografi_model->ubahdatafotografi();
             $this->session->set_flashdata('flash-data', 'diedit');
-            redirect('user', 'refresh');
+            redirect('fotografi', 'refresh');
         }
     }
 
@@ -116,7 +116,7 @@ class fotografi extends CI_Controller {
         
         $this->load->library('pdf');
 
-        $data['fotografi']= $this->cetak_model->view();
+        $data['fotografi']= $this->cetak_model->viewFotografi();
         $this->load->library('pdf');
 
         $this->pdf->setPaper('A4', 'potrait');

@@ -68,14 +68,12 @@
               <!-- /.card-header -->
               <div class="card-body">
               <a href="<?= base_url(); ?>galeri/tambah"><button class="btn btn-sm btn-primary mb-3" ></i> Tambah</button>
-              <a href="<?= base_url(); ?>user/laporan_pdf"><button class="btn btn-sm btn-danger mb-3"></i> Export PDF</button></a>
                 <table id="listUser" class="table table-bordered table-hover">
                   <thead>
                   <tr align="center" style="background-color: lightblue;color:black">
                             <th>id fotografi</th>
                             <th>Tgl upload</th>
                             <th>Foto</th>
-                            <th>Edit</th>
                             <th>Hapus</th>
                   </tr>
                   </thead>
@@ -85,7 +83,6 @@
                             <td><?php echo $d['id']; ?></td>
                             <td><?php echo $d['tgl_upload']; ?></td>
                             <td> <img src="<?= base_url() ?>/uploads/galeri/<?= $d['foto'] ?>" alt="" width="100px"></td>
-                            <td><a href="<?= base_url(); ?>galeri/edit/<?= $d['id']; ?>" class="badge badge-success float-center">Edit</a></td>
                             <td><a href="<?= base_url(); ?>galeri/hapus/<?= $d['id']; ?>" class="badge badge-danger float-center" onclick="return confirm('Yakin Data ini akan dihapus');">Hapus</a></td>
 
                         </tr>

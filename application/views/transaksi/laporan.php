@@ -45,13 +45,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="short">No</th>
-                        <th class="normal">Kode Transaksi</th>
-                        <th class="normal">Nama Pasien</th>
-                        <th class="normal">Nama Dokter</th>
-                        <th class="normal">Nama Obat</th>
-                        <th class="normal">Biaya</th>
-                        <th class="normal">Tanggal Transaksi</th>
+                        <th>Kode Transaksi</th>
+                        <th>ID_USER</th>
+                        <th>Nama Fotografi</th>
+                        <th>Tanggal Transaksi</th>
+                        <th>Harga</th>
+                        <th>Alamat Fotografi</th>
                     </tr>
                 </thead>
             <tbody>
@@ -60,11 +59,10 @@
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo 'KD_T 00' .  $admin->id_transaksi; ?></td>
+                    <td><?php echo $admin->id_user; ?></td>
                     <td><?php echo $admin->nama; ?></td>
-                    <td><?php echo $admin->nama_dok; ?></td>
-                    <td><?php echo $admin->nama_obat; ?></td>
-                    <td><?php echo $admin->biaya; ?></td>
-                    <td><?php echo $admin->tgl_transaksi; ?></td>
+                    <td><?php echo $admin->harga; ?></td>
+                    <td><?php echo $admin->alamatfotografi; ?></td>
                 </tr>
             <?php $no++; ?>
             <?php endforeach; ?>

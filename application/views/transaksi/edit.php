@@ -23,12 +23,13 @@
                     <?php endif; ?>
                     <form action="" method="post">
                         <input type="hidden" name="id_transaksi" value="<?= $transaksi['id_transaksi']; ?>">
+                        <input type="hidden" name="id_fotografi" value="<?= $transaksi['id_fotografi']; ?>">
                         <!-- https://getbootstrap.com/docs/4.4/components/forms/ -->
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="nama">Nama User</label>
                                 <select class="form-control" id="id_user" name="id_user">
-                                    <option selected="selected">Pilih fotografi</option>
+                                    <option selected="selected">Pilih user</option>
                                     <?php foreach ($user as $u) : ?>
                                         <option value="<?= $u['id_user'] ?>" selected><?= $u['nama']?></option>
                                     <?php endforeach; ?>
@@ -46,10 +47,6 @@
                             <div class="form-group">
                                 <label for="tgl_transaksi">Tanggal Transaksi</label>
                                 <input type="date" class="form-control" id="tgl_transaksi" name="tgl_transaksi" value="<?= $transaksi['tgl_transaksi']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="harga">harga</label>
-                                <input type="text" class="form-control" id="harga" name="harga" value="<?= $transaksi['harga']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="alamatfotografi">alamatfotografi</label>

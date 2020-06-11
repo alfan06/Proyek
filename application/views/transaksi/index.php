@@ -68,7 +68,7 @@
               <!-- /.card-header -->
               <div class="card-body">
               <a href="<?= base_url(); ?>transaksi/tambah"><button class="btn btn-sm btn-primary mb-3" ><i class="fas fa-sm fa-plus"></i> Tambah</button>
-              <a href="<?= base_url(); ?>user/laporan_pdf"><button class="btn btn-sm btn-danger mb-3"><i class="fas fa-file-pdf"></i> Export PDF</button></a>
+              <a href="<?= base_url(); ?>transaksi/laporan_pdf"><button class="btn btn-sm btn-danger mb-3"><i class="fas fa-file-pdf"></i> Export PDF</button></a>
                 <table id="listUser" class="table table-bordered table-hover">
                   <thead>
                     <tr style="background-color: lightblue;color:black">

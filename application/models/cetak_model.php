@@ -4,22 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class cetak_model extends CI_Model
 {
-    public function viewPenyewa()
-    {
-        $this->db->select('nama_penyewa, no_hp, jenis_kelamin');
-        $query = $this->db->get('penyewa');
-        return $query->result();
-    }
-    public function viewKamar()
+    public function viewFotografi()
     {
         $this->db->select('*');
-        $query = $this->db->get('kamar');
+        $query = $this->db->get('fotografi');
         return $query->result();
     }
 
     public function viewTransaksi()
     {
-        $query = $this->db->query("select * from transaksi t join penyewa p on p.id_penyewa = t.id_penyewa join kamar k on k.id_kamar = t.id_kamar");
+        $query = $this->db->query("select * from transaksi t join user p on p.id_user = t.id_user join fotografi k on k.id_fotografi = t.id_fotografi");
         return $query->result();
     }
 

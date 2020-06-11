@@ -22,6 +22,7 @@
                         <th>Tanggal Transaksi</th>
                         <th>Harga</th>
                         <th>Alamat Fotografi</th>
+                        <th>Pembayaran</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,9 @@
                             <td><?php echo date('d-m-Y', strtotime($t['tgl_transaksi'])) ?></td>
                             <td><?php echo $t['harga']; ?></td>
                             <td><?php echo $t['alamatfotografi']; ?></td>
+                            <td>
+                            <a href="paypal.me/alfannoufal" title="Cara Kerja PayPal" onclick="javascript:window.open('https://www.paypal.com/id/webapps/mpp/paypal-popup?locale.x=id_ID','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-small.png" alt="Check out dengan PayPal" /></a>
+                            </td>
                          </tr>
                     <?php endforeach; ?>
                   </tbody>

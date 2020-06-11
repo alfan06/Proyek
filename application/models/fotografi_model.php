@@ -71,8 +71,6 @@ class fotografi_model extends CI_Model
         if ($this->upload->do_upload('image')) {
             return $this->upload->data('file_name');
         }
-
-        return "default.jpg";
     }
 
     private function deleteFoto($id_fotografi)
@@ -88,8 +86,7 @@ class fotografi_model extends CI_Model
         $id_fotografi = $this->input->post('id_fotografi');
         $fotografi = $this->getfotografiByID($id_fotografi);
 
-        if ($fotografi['foto'] == null) {
-            # code...
+        if ($fotografi['foto'] == NULL) {
             $foto = $this->uploadFoto();
 
         }else if (empty($_FILES['image']['name'])) {

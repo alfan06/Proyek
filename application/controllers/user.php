@@ -6,17 +6,18 @@ class user extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //$this->load->helper('url');
-        //$this->load->helper('form');
+        $this->load->helper('url');
+        $this->load->helper('form');
         $this->load->model('cetak_model');
         $this->load->model('user_model');
 
-        if ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Tidak Aktif") {
+        if ($this->session->userdata('level') == "user" and $this->session->userdata('status') == "Tidak aktif") {
             $this->session->sess_destroy();
             $data['pesan'] = "Sorry You Are Not Active, Please Contact Admin!!";
             $data['title'] = 'Login User';
-            $this->load->view('auth/template/header', $data);
+            $this->load->view('auth/template/headerlogin', $data);
             $this->load->view('auth/login', $data);
+            $this->load->view('auth/template/footerlogin', $data);
         } elseif ($this->session->userdata('level') != "user" and $this->session->userdata('level') != "admin") {
             redirect('auth', 'refresh');
         }
@@ -26,11 +27,12 @@ class user extends CI_Controller
     {
         if ($this->session->userdata('level') == "admin") {
             redirect('admin', 'refresh');
+        }else{
+            $data['title'] = 'User Dashboard';
+            $this->load->view('user/template/header3', $data);
+            $this->load->view('user/index');
+            $this->load->view('user/template/footer', $data);
         }
-        $data['title'] = 'User Dashboard';
-        $this->load->view('user/template/header3', $data);
-        $this->load->view('user/index');
-        $this->load->view('user/template/footer', $data);
     }
 
     public function hapusDataUser($id)
@@ -46,7 +48,9 @@ class user extends CI_Controller
         $data['title'] = 'Detail User';
         $data['user'] = $this->user_model->getUserById($id);
         $this->load->view('admin/template/header', $data);
+        $this->load->view('admin/template/sidebar', $data);
         $this->load->view('user/detail', $data);
+        $this->load->view('admin/template/footerAdmin', $data);
     }
 
     public function edit($id)
@@ -65,7 +69,9 @@ class user extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/template/header', $data);
+            $this->load->view('admin/template/sidebar', $data);
             $this->load->view('user/edit', $data);
+            $this->load->view('admin/template/footerAdmin', $data);
         } else {
             $this->user_model->ubahDataUser();
             $this->session->set_flashdata('flash-data', 'Edited');

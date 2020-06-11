@@ -74,7 +74,6 @@
                       <td>Name</td>
                       <td>Username</td>
                       <td>Email</td>
-                      <th>Foto</th>
                       <td>Level</td>
                       <td>Status</td>
                       <td>Action</td>
@@ -92,9 +91,6 @@
                                             </td>
                                             <td>
                                                 <?= $usr->email ?>
-                                            </td>
-                                            <td>
-                                               <img src="<?= base_url() ?>/uploads/profil/<?= $usr->foto ?>" alt="" width="100px">
                                             </td>
                                             <td>
                                                 <?= $usr->level ?>
