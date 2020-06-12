@@ -30,7 +30,7 @@ class fotografi_model extends CI_Model
     }
 
     public function getfotografiByID($id_fotografi){
-        return $this->db->get_where('fotografi',['id_fotografi'=> $id_fotografi])->row_array(); 
+        return $this->db->get_where('fotografi', ['id_fotografi'=> $id_fotografi])->row_array(); 
     }
 
     public function getfotografiByID2($id_fotografi){
@@ -38,13 +38,13 @@ class fotografi_model extends CI_Model
     }
 
     public function ubahdatafotografi(){
-        $data=[
-            "nama" => $this->input->post('nama',true),
-            "harga" => $this->input->post('harga',true),
-            "foto" => $this->ubahFoto()
+        $data = [
+            "nama" => $this->input->post('nama', true),
+            "harga" => $this->input->post('harga', true)
+            // "foto" => $this->ubahFoto()
         ];
-        $this->db->where('id_fotografi',$this->input->post('id_fotografi'));
-        $this->db->update('fotografi',$data);
+        $this->db->where('id_fotografi', $this->input->post('id_fotografi', true));
+        $this->db->update('fotografi', $data);
     }
 
     public function cariDatafotografi(){
@@ -81,21 +81,22 @@ class fotografi_model extends CI_Model
         unlink("./uploads/foto/$row->foto");
     }
 
-    private function ubahFoto()
-    {
-        $id_fotografi = $this->input->post('id_fotografi');
-        $fotografi = $this->getfotografiByID($id_fotografi);
+    // private function ubahFoto()
+    // {
+    //     $id_fotografi = $this->input->post('id_fotografi');
+    //     $fotografi = $this->getfotografiByID($id_fotografi);
 
-        if ($fotografi['foto'] == NULL) {
-            $foto = $this->uploadFoto();
+    //     if ($fotografi['foto'] == null) {
+    //         # code...
+    //         $foto = $this->uploadFoto();
 
-        }else if (empty($_FILES['image']['name'])) {
-            $foto = $this->input->post('fotoLama');
+    //     }else if (empty($_FILES['image']['name'])) {
+    //         $foto = $this->input->post('fotoLama');
 
-        } else {
-            $this->deleteFoto($this->input->post('id_fotografi'));
-            $foto = $this->uploadFoto();
-        }
-        return $foto;
-    }
+    //     } else {
+    //         $this->deleteFoto($this->input->post('id_fotografi'));
+    //         $foto = $this->uploadFoto();
+    //     }
+    //     return $foto;
+    // }
 }

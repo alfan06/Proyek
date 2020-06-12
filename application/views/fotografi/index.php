@@ -87,7 +87,7 @@
                             <td><?php echo $d['nama']; ?></td>
                             <td><?php echo $d['harga']; ?></td>
                             <td> <img src="<?= base_url() ?>/uploads/foto/<?= $d['foto'] ?>" alt="" width="100px"></td>
-                            <td><a href="<?= base_url(); ?>fotografi/edit/<?= $d['id_fotografi']; ?>" class="badge badge-success float-center">Edit</a></td>
+                            <td><a href="<?= base_url(); ?>fotografi/edit/<?= $d['id_fotografi'] ?>" class="badge badge-success float-center">Edit</a></td>
                             <td><a href="<?= base_url(); ?>fotografi/hapus/<?= $d['id_fotografi']; ?>" class="badge badge-danger float-center" onclick="return confirm('Yakin Data ini akan dihapus');">Hapus</a></td>
                             <td><a href="<?= base_url(); ?>fotografi/detail/<?= $d['id_fotografi']; ?>" class="badge badge-danger float-center" >Detail</a></td>
 

@@ -47,7 +47,8 @@
                 <!-- Section tittle -->
                 <div class="row">
                             <h2>Note:</h2>
-                            <h2>Silahkan bayar ketika hari pemotretan</h2>
+                            <h2>Silahkan kirim bukti pembayaran ke nomor whatsapp kami di:</h2>
+                            <h2>08155502079</h2>
                 </div>
             </div>
 </section>

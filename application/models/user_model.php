@@ -51,7 +51,6 @@ class user_model extends CI_Model
 
     public function hapusDataUser($id_user)
     {
-        $this->deleteFoto($id_user);
         $this->db->where('id_user', $id_user);
         $this->db->delete('user');
     }
